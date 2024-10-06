@@ -47,9 +47,24 @@
 				div.style.display = 'block';
 			} 
 		}
+
+		async function rollDice() {
+            const url = document.getElementById("urlInput").value + "/roll-dice?sides=6"; // Roll a 6-sided dice
+            try {
+                const response = await fetch(url);
+                const result = await response.text(); // Get the rolled number
+                document.getElementById("result").innerHTML = "Rolled: " + result; // Display the result
+            } catch (error) {
+                document.getElementById("result").innerHTML = "Error: " + error.message; // Handle errors
+            }
+        }
 	</script>
 
 	<div id="testingDiv">
+        <button type="button" onclick="rollDice()">Roll Dice</button> <!-- Button to roll the dice -->
+        <div id="result"></div> <!-- Where the result will be displayed -->
+        <br><br>
+
 		<button type="button" onclick="fetchAbout()">Fetch About</button>
 		<div id="fetch-about-result"></div>
 		<br><br>
